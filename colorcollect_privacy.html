@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ColorCollect — Privacy Policy</title>
+  <style>
+    body {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem 4rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #fff;
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 0.3rem; }
+    h3 { margin-top: 1.5rem; }
+    hr { border: 0; border-top: 1px solid #eee; margin: 2rem 0; }
+    a { color: #2c5fb3; }
+    table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+    td, th { border: 1px solid #ddd; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    code { background: #f3f3f3; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.95em; }
+    em { color: #555; }
+    ul { padding-left: 1.4rem; }
+    li { margin: 0.25rem 0; }
+    .updated { color: #666; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<h1>ColorCollect Privacy Policy</h1>
+
+<p class="updated">Last updated: 2026-05-25</p>
+
+<p>This document explains what data the ColorCollect app ("the app", "we") collects, why, and how long it stays around. <strong>This is not legal advice</strong> — if you publish ColorCollect on the App Store or Play Store, have a lawyer review this text and adapt it to the laws of the regions you operate in (GDPR for the EU, CCPA for California, PIPEDA for Canada, etc.).</p>
+
+<p>A copy of this policy is bundled with the app (Settings → Privacy → Privacy policy) and is also hosted publicly at <strong>https://colorcollect.app/privacy</strong> so it can be linked from the Google Play store listing.</p>
+
+<h2>Summary</h2>
+
+<ul>
+  <li><strong>Solo mode</strong> — nothing leaves your device.</li>
+  <li><strong>Group mode</strong> — photos and a chosen display name are sent to our backend (Supabase) so the people in your room can see them. Photos are auto-deleted from the server within 7 days after the montage is finalized.</li>
+  <li><strong>Optional geotagging</strong> — if you opt in, GPS coordinates are saved locally with each photo. They are never sent to our servers.</li>
+  <li><strong>Optional crash reports</strong> — off by default. You can opt in from Settings → Privacy.</li>
+  <li>We do <strong>not</strong> sell your data. We do not show ads. There are no third-party trackers.</li>
+  <li>No in-app purchases or subscriptions in this version. All features are available to every user.</li>
+</ul>
+
+<hr>
+
+<h2>1. What we collect</h2>
+
+<h3>1.1 Local storage (always)</h3>
+
+<p>The app stores the following on your device only:</p>
+
+<ul>
+  <li><strong>Montages</strong> — the grid, target color, frame style, and the cell photos you've taken.</li>
+  <li><strong>Settings</strong> — theme choice, display name, the random anonymous account id we generate the first time you use Group mode, and your crash-reporting / location preferences.</li>
+  <li><strong>Upload queue</strong> — pending photo uploads in Group mode, until they succeed or you discard them.</li>
+  <li><strong>Notification schedule</strong> — when you set a deadline on a group montage, a one-hour-before reminder is scheduled with the device's local notification system. The reminder text contains only the room code — no photos or display names.</li>
+</ul>
+
+<p>You can clear all of this with <strong>Settings → Delete account &amp; all data</strong>, or by uninstalling the app.</p>
+
+<h3>1.2 Backend storage (only in Group mode)</h3>
+
+<p>When you create or join a Group montage, the following is sent to our backend (Supabase, hosted in the EU):</p>
+
+<ul>
+  <li><strong>Anonymous account id</strong> — a random UUID generated on first launch. We do <strong>not</strong> ask for your email, phone number, or any other identifying information.</li>
+  <li><strong>Display name</strong> — the name you choose to be shown to other participants in your rooms.</li>
+  <li><strong>Room metadata</strong> — grid size, target color, frame style, deadline (if you set one), participant list, who owns which cell.</li>
+  <li><strong>Photo uploads</strong> — each photo you submit to a Group room is uploaded as a JPEG (max 350 KB). Photos are stored in encrypted-at-rest storage and served via short-lived signed URLs to other participants.</li>
+  <li><strong>Votes</strong> — in Vote-mode rooms, which candidate you voted for per cell.</li>
+  <li><strong>Per-day counters</strong> — number of rooms you created and photos you uploaded each day, for abuse prevention. Retained 30 days.</li>
+  <li><strong>IP address (implicit)</strong> — like every internet service, our backend sees the IP address you connect from. Supabase logs it for security purposes (rate limiting, abuse detection) according to their own retention policy. We do not separately store or analyse IPs.</li>
+</ul>
+
+<h3>1.3 Geotagging (opt-in, local only)</h3>
+
+<p>If you enable "Save photo locations" in Settings, the app reads the GPS coordinates of each cell photo and stores them <strong>on your device only</strong>. They are used to show your montages on an in-app map. Coordinates are <strong>never sent to our backend</strong> and are not included in Group-mode uploads.</p>
+
+<p>You can turn geotagging off at any time. Existing coordinates remain on the device until you delete the photo or the app.</p>
+
+<h3>1.4 Crash reports (opt-in)</h3>
+
+<p>Crash reporting is <strong>off by default</strong>. If you turn it on under <strong>Settings → Privacy → Send crash reports</strong>, the app sends anonymous crash diagnostics to Sentry (sentry.io) on the next launch. These reports include the stack trace, the OS version, the app version, and the anonymous account id — but <strong>not</strong> photos, room codes, display names, or device identifiers like IMEI / advertising id. You can turn the setting off again at any time; once off, no further reports are sent.</p>
+
+<h3>1.5 Notifications (Android 13+)</h3>
+
+<p>If you create a group montage with a deadline, the app schedules a one-hour-before local reminder using the system notification service. On Android 13+ the system will ask you for notification permission the first time. You can revoke it any time in system settings. Reminders are scheduled and fired entirely on your device — nothing is sent to a push server.</p>
+
+<hr>
+
+<h2>2. How long we keep things</h2>
+
+<table>
+  <thead>
+    <tr><th>Data</th><th>Retention</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Local data on your device</td><td>Until you delete the app, or use <strong>Settings → Delete account &amp; all data</strong>.</td></tr>
+    <tr><td>Group-room photos</td><td>Auto-deleted from our servers <strong>within 7 days</strong> of the room being finalized.</td></tr>
+    <tr><td>Unfinalized rooms older than 30 days</td><td>Auto-deleted.</td></tr>
+    <tr><td>Per-day abuse-prevention counters</td><td>30 days, then deleted.</td></tr>
+    <tr><td>Crash reports (if you opt in)</td><td>90 days at Sentry, then deleted.</td></tr>
+  </tbody>
+</table>
+
+<h2>3. Who can see your data</h2>
+
+<ul>
+  <li><strong>Local data</strong> — only you.</li>
+  <li><strong>Group-room photos and votes</strong> — only the participants of the room you're in. Anyone with the 6-character room code can join the room and see its contents, so treat the code like a password — only share it with people you want in the montage.</li>
+  <li><strong>We (the operators)</strong> — Supabase support staff can technically access the database in the course of providing the hosted service. We do not routinely access user data and do not share it with anyone else.</li>
+</ul>
+
+<h2>4. International transfers</h2>
+
+<p>Our backend is hosted on Supabase in the <strong>EU (Frankfurt)</strong>. If you're outside the EU, your data is transferred to and stored in the EU.</p>
+
+<h2>5. Your rights</h2>
+
+<p>You can:</p>
+
+<ul>
+  <li><strong>Delete everything in one tap</strong> — <strong>Settings → Delete account &amp; all data</strong>. This wipes every montage, photo, room, setting, and the anonymous account id on this device, and asks our backend to delete every server-side row tied to your anonymous account (participations, photo uploads, votes, abuse-prevention counters, and the auth record itself). This action cannot be undone.</li>
+  <li><strong>Delete only local data</strong> — uninstall the app, or use the in-app delete buttons next to individual montages.</li>
+  <li><strong>Request server-side deletion by email</strong> — if the in-app deletion fails (e.g. you have no internet at the time), email <strong>support@colorcollect.app</strong> with the anonymous account id from Settings and we will purge the server-side data manually within 30 days.</li>
+  <li><strong>Export your data</strong> — montages live on your device and can be saved to your gallery via the share sheet. To request a copy of server-side data, email the support address above.</li>
+</ul>
+
+<h2>6. Cookies &amp; trackers</h2>
+
+<p>The app does not use cookies, advertising identifiers, or third-party trackers. We do not integrate Facebook SDK, Google Ads, or similar.</p>
+
+<h2>7. In-app purchases</h2>
+
+<p>This version of ColorCollect contains <strong>no in-app purchases and no subscriptions</strong>. All features are free for every user. If a future version introduces paid features, they will be processed exclusively through Google Play Billing on Android (and the App Store on iOS) and this policy will be updated before the feature ships.</p>
+
+<h2>8. Children</h2>
+
+<p>The app is rated for ages 12 and up. We do not knowingly collect data from children under 13. If you believe a child has used the app, email us and we will delete the relevant account.</p>
+
+<h2>9. Changes to this policy</h2>
+
+<p>Material changes will be announced in the app's release notes and reflected in the "Last updated" date at the top of this document.</p>
+
+<h2>10. Contact</h2>
+
+<p>Questions, complaints, or deletion requests: <strong><a href="mailto:support@colorcollect.app">support@colorcollect.app</a></strong></p>
+
+</body>
+</html>
