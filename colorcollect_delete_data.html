@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ColorCollect — Delete your data</title>
+  <style>
+    body {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 0 1rem 4rem;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      color: #222;
+      background: #fff;
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 { margin-bottom: 0.25rem; }
+    h2 { margin-top: 2.25rem; border-bottom: 1px solid #eee; padding-bottom: 0.3rem; }
+    h3 { margin-top: 1.5rem; }
+    hr { border: 0; border-top: 1px solid #eee; margin: 2rem 0; }
+    a { color: #2c5fb3; }
+    table { border-collapse: collapse; margin: 1rem 0; width: 100%; }
+    td, th { border: 1px solid #ddd; padding: 0.4rem 0.6rem; text-align: left; vertical-align: top; }
+    th { background: #f7f7f7; }
+    code { background: #f3f3f3; padding: 0.1rem 0.3rem; border-radius: 3px; font-size: 0.95em; }
+    em { color: #555; }
+    ul, ol { padding-left: 1.4rem; }
+    li { margin: 0.25rem 0; }
+    .updated { color: #666; font-style: italic; }
+    .callout {
+      background: #f7f9fc;
+      border-left: 4px solid #2c5fb3;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Delete your ColorCollect data</h1>
+
+<p class="updated">Last updated: 2026-05-25</p>
+
+<p>This page explains how to request deletion of the data that the <strong>ColorCollect</strong> app (published by <strong>Lancimator</strong>) holds about you, what gets deleted, and what — if anything — is kept.</p>
+
+<p>For the full picture of what the app collects in the first place, see our <a href="https://colorcollect.app/privacy">Privacy Policy</a>.</p>
+
+<h2>Option 1 — Delete everything from inside the app (recommended)</h2>
+
+<p>The fastest way is to use the built-in self-service flow. It works even if you have never created an account in the traditional sense (ColorCollect uses an anonymous account id that is generated automatically the first time you open Group mode).</p>
+
+<ol>
+  <li>Open the <strong>ColorCollect</strong> app on your device.</li>
+  <li>Tap the <strong>Settings</strong> icon in the top-right of the home screen.</li>
+  <li>Scroll to the bottom and tap <strong>"Delete account &amp; all data"</strong>.</li>
+  <li>Confirm in the dialog that appears.</li>
+</ol>
+
+<p>This wipes every montage, cell photo, room, setting, and the anonymous account id on your device, <strong>and</strong> asks our backend (Supabase) to delete every server-side row tied to your anonymous account — participations, photo uploads, votes, abuse-prevention counters, and the authentication record itself.</p>
+
+<div class="callout">
+  <strong>Note:</strong> This action is permanent and cannot be undone. After it finishes, the app returns to its first-launch state and you will be issued a brand-new anonymous account id the next time you open Group mode.
+</div>
+
+<h2>Option 2 — Email us</h2>
+
+<p>If the in-app delete fails (e.g. you are offline, the app no longer launches, or you have already uninstalled it), send a deletion request by email:</p>
+
+<ul>
+  <li><strong>To:</strong> <a href="mailto:lancimator@gmail.com?subject=ColorCollect%20data%20deletion%20request">lancimator@gmail.com</a></li>
+  <li><strong>Subject:</strong> <code>ColorCollect data deletion request</code></li>
+  <li><strong>Include:</strong> the <em>anonymous account id</em> shown in <strong>Settings → About</strong>, if you still have access to it. If you don't, list any room codes you participated in and a rough date range so we can locate the records.</li>
+</ul>
+
+<p>We will confirm receipt within 7 days and complete the deletion within 30 days.</p>
+
+<h2>What gets deleted</h2>
+
+<p>Both routes above remove the following:</p>
+
+<table>
+  <thead>
+    <tr><th>Data</th><th>Where it lives</th><th>Deleted?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>All montages, cell photos, and target colors</td><td>Your device (Hive)</td><td>Yes, immediately</td></tr>
+    <tr><td>Display name and anonymous account id</td><td>Your device + Supabase</td><td>Yes, immediately</td></tr>
+    <tr><td>Group-room photo uploads (JPEGs)</td><td>Supabase Storage (EU)</td><td>Yes, immediately</td></tr>
+    <tr><td>Room participations and votes</td><td>Supabase database (EU)</td><td>Yes, immediately</td></tr>
+    <tr><td>Per-day abuse-prevention counters tied to your id</td><td>Supabase database (EU)</td><td>Yes, immediately</td></tr>
+    <tr><td>App settings, theme, geotag preference</td><td>Your device</td><td>Yes, immediately</td></tr>
+    <tr><td>Saved photo GPS coordinates (if you enabled geotagging)</td><td>Your device only — never sent to our backend</td><td>Yes, with the local wipe</td></tr>
+    <tr><td>Local notification schedule</td><td>Your device</td><td>Yes, immediately</td></tr>
+  </tbody>
+</table>
+
+<h2>What is kept, and for how long</h2>
+
+<p>A small amount of data is retained briefly for legal, security, and operational reasons:</p>
+
+<table>
+  <thead>
+    <tr><th>Data</th><th>Why we keep it</th><th>How long</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Backend access logs (including the IP address your device connected from)</td>
+      <td>Security, abuse detection, and rate limiting. Logged by Supabase under their own policy; we do not separately store or analyse these.</td>
+      <td>Up to 30 days, then deleted by Supabase.</td>
+    </tr>
+    <tr>
+      <td>Crash diagnostics (only if you opted into crash reporting)</td>
+      <td>Stack traces uploaded to Sentry to help us fix bugs. These contain no photos, no display names, and no device identifiers — only an anonymous diagnostic id.</td>
+      <td>Up to 90 days at Sentry, then deleted.</td>
+    </tr>
+    <tr>
+      <td>Email correspondence about your deletion request (Option 2 only)</td>
+      <td>So we can prove the request was honoured if you ask later.</td>
+      <td>Up to 12 months, then deleted.</td>
+    </tr>
+    <tr>
+      <td>Group-room photos that other participants shared <em>into</em> rooms you joined</td>
+      <td>Those photos belong to the other participants and remain visible to the rest of the room. We only delete photos <strong>you</strong> uploaded.</td>
+      <td>Auto-deleted from our servers within 7 days of the room being finalized, per our normal retention policy.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Uninstalling the app</h2>
+
+<p>Uninstalling ColorCollect from your device removes all <em>local</em> data (montages, photos, settings, geotags). It does <strong>not</strong> by itself remove anything from our backend — for that you must use Option 1 <em>before</em> uninstalling, or Option 2 afterwards.</p>
+
+<h2>Contact</h2>
+
+<p>Questions about this page or about a deletion request you have already submitted: <strong><a href="mailto:lancimator@gmail.com">lancimator@gmail.com</a></strong>.</p>
+
+</body>
+</html>
