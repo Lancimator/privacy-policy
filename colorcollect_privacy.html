@@ -44,8 +44,8 @@
 
 <ul>
   <li><strong>Solo mode</strong> — nothing leaves your device.</li>
-  <li><strong>Group mode</strong> — photos and a chosen display name are sent to our backend (Supabase) so the people in your room can see them. Photos are auto-deleted from the server within 7 days after the montage is finalized.</li>
-  <li><strong>Optional geotagging</strong> — if you opt in, GPS coordinates are saved locally with each photo. They are never sent to our servers.</li>
+  <li><strong>Group mode</strong> — photos and a chosen display name are sent to our backend (Supabase) so the people in your room can see them. Photos are auto-deleted from the server shortly after the room is finalized (typically within an hour), and at most 24 hours after a room goes inactive.</li>
+  <li><strong>Optional geotagging</strong> — if you opt in, GPS coordinates are saved locally with each photo. They are not sent to our servers unless you also opt in to sharing a photo's location with your group room.</li>
   <li><strong>Optional crash reports</strong> — off by default. You can opt in from Settings → Privacy.</li>
   <li>We do <strong>not</strong> sell your data. We do not show ads. There are no third-party trackers.</li>
   <li>No in-app purchases or subscriptions in this version. All features are available to every user.</li>
@@ -82,11 +82,13 @@
   <li><strong>IP address (implicit)</strong> — like every internet service, our backend sees the IP address you connect from. Supabase logs it for security purposes (rate limiting, abuse detection) according to their own retention policy. We do not separately store or analyse IPs.</li>
 </ul>
 
-<h3>1.3 Geotagging (opt-in, local only)</h3>
+<h3>1.3 Geotagging (opt-in)</h3>
 
-<p>If you enable "Save photo locations" in Settings, the app reads the GPS coordinates of each cell photo and stores them <strong>on your device only</strong>. They are used to show your montages on an in-app map. Coordinates are <strong>never sent to our backend</strong> and are not included in Group-mode uploads.</p>
+<p>If you enable "Save photo locations" in Settings, the app reads the GPS coordinates of each cell photo and stores them <strong>on your device</strong>. They are used to show your montages on an in-app map. By default these coordinates stay <strong>on your device only</strong> and are <strong>not</strong> included in Group-mode uploads.</p>
 
-<p>You can turn geotagging off at any time. Existing coordinates remain on the device until you delete the photo or the app.</p>
+<p>There is a separate, also-optional setting, "Share photo location with my group". If you turn it on, the location of photos you add <strong>in a Group room</strong> is uploaded alongside the photo so the other participants in that room can see where it was taken on their map. This applies only to Group mode — your solo montage locations are never uploaded. Coordinates shared this way are stored with the group photo and are removed when that photo is deleted from our backend (within 7 days of the montage being finalized).</p>
+
+<p>You can turn either setting off at any time. Turning off sharing stops new uploads; existing coordinates on the device remain until you delete the photo or the app.</p>
 
 <h3>1.4 Crash reports (opt-in)</h3>
 
@@ -106,7 +108,7 @@
   </thead>
   <tbody>
     <tr><td>Local data on your device</td><td>Until you delete the app, or use <strong>Settings → Delete account &amp; all data</strong>.</td></tr>
-    <tr><td>Group-room photos</td><td>Auto-deleted from our servers <strong>within 7 days</strong> of the room being finalized.</td></tr>
+    <tr><td>Group-room photos</td><td>Auto-deleted from our servers <strong>shortly after the room is finalized</strong> (typically within an hour), and at most <strong>24 hours</strong> after a room goes inactive.</td></tr>
     <tr><td>Unfinalized rooms older than 30 days</td><td>Auto-deleted.</td></tr>
     <tr><td>Per-day abuse-prevention counters</td><td>30 days, then deleted.</td></tr>
     <tr><td>Crash reports (if you opt in)</td><td>90 days at Sentry, then deleted.</td></tr>
