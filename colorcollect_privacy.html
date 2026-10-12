@@ -34,7 +34,7 @@
 
 <h1>ColorCollect Privacy Policy</h1>
 
-<p class="updated">Last updated: 2026-06-28</p>
+<p class="updated">Last updated: 2026-10-12</p>
 
 <p>This document explains what data the ColorCollect app ("the app", "we") collects, why, and how long it stays around. <strong>This is not legal advice</strong> — if you publish ColorCollect on the App Store or Play Store, have a lawyer review this text and adapt it to the laws of the regions you operate in (GDPR for the EU, CCPA for California, PIPEDA for Canada, etc.).</p>
 
@@ -43,12 +43,23 @@
 <h2>Summary</h2>
 
 <ul>
-  <li><strong>Solo mode</strong> — nothing leaves your device.</li>
+
+  <li><strong>Solo mode</strong> — your photos and montages stay on your device. The one exception is when you tap <strong>Share</strong> on a finished montage: that single montage image is uploaded so the link in your message can open it, and it is deleted after 90 days (section 1.6).</li>
+
+  <li><strong>Anonymous usage statistics</strong> — the app records a few events (e.g. "montage completed", "paywall opened") against your random anonymous id, on our own server, to understand how the app is used (section 1.7).</li>
+
   <li><strong>Group mode</strong> — photos and a chosen display name are sent to our backend (Supabase) so the people in your room can see them. Photos are auto-deleted from the server shortly after the room is finalized (typically within an hour), and at most 24 hours after a room goes inactive.</li>
+
   <li><strong>Optional geotagging</strong> — if you opt in, GPS coordinates are saved locally with each photo. They are not sent to our servers unless you also opt in to sharing a photo's location with your group room.</li>
+
   <li><strong>Optional crash reports</strong> — off by default. You can opt in from Settings → Privacy.</li>
+
+  <li><strong>Bot protection</strong> — when the app first connects to our backend, an invisible Cloudflare Turnstile check may run to keep automated fake accounts out. Cloudflare sees technical device signals (such as your IP address) for that check only (section 1.8).</li>
+
   <li>We do <strong>not</strong> sell your data. We do not show ads. There are no third-party trackers.</li>
+
   <li><strong>Optional in-app purchases</strong> — an optional premium unlock and optional donations (a "tip jar"). Payment is handled entirely by the App Store / Google Play; we never see or store your payment details. All core features remain free.</li>
+
 </ul>
 
 <hr>
@@ -60,10 +71,15 @@
 <p>The app stores the following on your device only:</p>
 
 <ul>
+
   <li><strong>Montages</strong> — the grid, target color, frame style, and the cell photos you've taken.</li>
+
   <li><strong>Settings</strong> — theme choice, display name, the random anonymous account id we generate the first time you use Group mode, and your crash-reporting / location preferences.</li>
+
   <li><strong>Upload queue</strong> — pending photo uploads in Group mode, until they succeed or you discard them.</li>
+
   <li><strong>Notification schedule</strong> — when you set a deadline on a group montage, a one-hour-before reminder is scheduled with the device's local notification system. The reminder text contains only the room code — no photos or display names.</li>
+
 </ul>
 
 <p>You can clear all of this with <strong>Settings → Delete account &amp; all data</strong>, or by uninstalling the app.</p>
@@ -73,20 +89,28 @@
 <p>When you create or join a Group montage, the following is sent to our backend (Supabase, hosted in the EU):</p>
 
 <ul>
+
   <li><strong>Anonymous account id</strong> — a random UUID generated on first launch. We do <strong>not</strong> ask for your email, phone number, or any other identifying information.</li>
+
   <li><strong>Display name</strong> — the name you choose to be shown to other participants in your rooms.</li>
-  <li><strong>Room metadata</strong> — the room name (if the host set one), grid size, target color, frame style, deadline (if you set one), participant list, who owns which cell.</li>
+
+  <li><strong>Room metadata</strong> — grid size, target color, frame style, deadline (if you set one), participant list, who owns which cell.</li>
+
   <li><strong>Photo uploads</strong> — each photo you submit to a Group room is uploaded as a JPEG (max 350 KB). Photos are stored in encrypted-at-rest storage and served via short-lived signed URLs to other participants.</li>
+
   <li><strong>Votes</strong> — in Vote-mode rooms, which candidate you voted for per cell.</li>
+
   <li><strong>Per-day counters</strong> — number of rooms you created and photos you uploaded each day, for abuse prevention. Retained 30 days.</li>
+
   <li><strong>IP address (implicit)</strong> — like every internet service, our backend sees the IP address you connect from. Supabase logs it for security purposes (rate limiting, abuse detection) according to their own retention policy. We do not separately store or analyse IPs.</li>
+
 </ul>
 
 <h3>1.3 Geotagging (opt-in)</h3>
 
 <p>If you enable "Save photo locations" in Settings, the app reads the GPS coordinates of each cell photo and stores them <strong>on your device</strong>. They are used to show your montages on an in-app map. By default these coordinates stay <strong>on your device only</strong> and are <strong>not</strong> included in Group-mode uploads.</p>
 
-<p>There is a separate, also-optional setting, "Share photo location with my group". If you turn it on, the location of photos you add <strong>in a Group room</strong> is uploaded alongside the photo so the other participants in that room can see where it was taken on their map. This applies only to Group mode — your solo montage locations are never uploaded. Coordinates shared this way are stored with the group photo and are removed when that photo is deleted from our backend (within 7 days of the montage being finalized).</p>
+<p>There is a separate, also-optional setting, "Share photo location with my group". If you turn it on, the location of photos you add <strong>in a Group room</strong> is uploaded alongside the photo so the other participants in that room can see where it was taken on their map. This applies only to Group mode — your solo montage locations are never uploaded. Coordinates shared this way are stored with the group photo and are removed when that photo is deleted from our backend (shortly after the room is finalized — typically within an hour — and at most 24 hours after a room goes inactive; see section 2).</p>
 
 <p>You can turn either setting off at any time. Turning off sharing stops new uploads; existing coordinates on the device remain until you delete the photo or the app.</p>
 
@@ -98,49 +122,85 @@
 
 <p>If you create a group montage with a deadline, the app schedules a one-hour-before local reminder using the system notification service. On Android 13+ the system will ask you for notification permission the first time. You can revoke it any time in system settings. Reminders are scheduled and fired entirely on your device — nothing is sent to a push server.</p>
 
+<h3>1.6 Shared montage links (when you tap Share)</h3>
+
+<p>When you share a finished montage, the app uploads <strong>that one composed montage image</strong> (a JPEG, max 350 KB) to our backend together with its target color and color name, and puts a link to it in your message (for example <code>https://colorcollectapp.com/m/?id=…</code>). Anyone you send the link to can open the montage in the app. The individual cell photos, their locations, and your display name are <strong>not</strong> uploaded. The link id is random and unguessable; links are not listed or searchable. The image and its record are deleted automatically <strong>90 days</strong> after sharing, or immediately when you use <strong>Settings → Delete account &amp; all data</strong>. If you are offline, the montage is shared as an image without a link and nothing is uploaded.</p>
+
+<h3>1.7 Anonymous usage statistics</h3>
+
+<p>To understand how the app is used, it records a small number of events on our own backend (Supabase, EU), keyed only by your random anonymous account id: a montage was completed or shared, a group room was created or joined, the premium screen was opened (and from where), the outcome of an in-app purchase attempt (which product, and whether it succeeded or was cancelled — never payment details), plus similar steps such as first launch, finishing the intro, starting a hunt (e.g. from the color of the day), taking a photo, sharing an invite, opening a shared link, and the type of error when a photo, upload or montage fails. Each event also records the device platform (Android or iOS), the app version and the device language/region setting, and the time it happened. Events logged while offline are kept on the device (at most two weeks) and sent when the connection returns. Events carry no photos, display names, locations or free text. They are not shared with anyone, no third-party analytics SDK is used, and they are deleted when you use <strong>Settings → Delete account &amp; all data</strong>.</p>
+
+<h3>1.8 Bot protection (Cloudflare Turnstile)</h3>
+
+<p>To stop automated scripts from creating large numbers of fake accounts and overwhelming the service, the app may run a <strong>Cloudflare Turnstile</strong> check when it first creates your anonymous account on our backend (for example when you create or join a Group room, share a montage link, or the app sends its usage statistics). The check runs invisibly in a hidden web view inside the app — nothing is shown on screen and you don't have to do anything.</p>
+
+<p>For this check, <strong>Cloudflare, Inc.</strong> receives technical signals from your device, such as your IP address, the web view's browser (User-Agent) details and connection characteristics, and uses them to tell people apart from bots and to improve its bot detection. The check only returns a one-time token, which our backend verifies; we do not receive or store the signals themselves, and no photos, display names, locations, montages or account ids are sent to Cloudflare. Turnstile is not used for advertising or to track you across apps or websites.</p>
+
+<p>Cloudflare's processing is described in the <strong>Turnstile Privacy Addendum</strong> (<a href="https://www.cloudflare.com/turnstile-privacy-policy/">https://www.cloudflare.com/turnstile-privacy-policy/</a>) and Cloudflare's privacy policy (<a href="https://www.cloudflare.com/privacypolicy/">https://www.cloudflare.com/privacypolicy/</a>).</p>
+
 <hr>
 
 <h2>2. How long we keep things</h2>
 
 <table>
-  <thead>
-    <tr><th>Data</th><th>Retention</th></tr>
-  </thead>
-  <tbody>
-    <tr><td>Local data on your device</td><td>Until you delete the app, or use <strong>Settings → Delete account &amp; all data</strong>.</td></tr>
-    <tr><td>Group-room photos</td><td>Auto-deleted from our servers <strong>shortly after the room is finalized</strong> (typically within an hour), and at most <strong>24 hours</strong> after a room goes inactive.</td></tr>
-    <tr><td>Unfinalized rooms older than 30 days</td><td>Auto-deleted.</td></tr>
-    <tr><td>Per-day abuse-prevention counters</td><td>30 days, then deleted.</td></tr>
-    <tr><td>Crash reports (if you opt in)</td><td>90 days at Sentry, then deleted.</td></tr>
-  </tbody>
+
+  <tr><th>Data</th><th>Retention</th></tr>
+
+  <tr><td>Local data on your device</td><td>Until you delete the app, or use <strong>Settings → Delete account &amp; all data</strong>.</td></tr>
+
+  <tr><td>Group-room photos</td><td>Auto-deleted from our servers <strong>shortly after the room is finalized</strong> (typically within an hour), and at most <strong>24 hours</strong> after a room goes inactive.</td></tr>
+
+  <tr><td>Unfinalized rooms older than 30 days</td><td>Auto-deleted.</td></tr>
+
+  <tr><td>Per-day abuse-prevention counters</td><td>30 days, then deleted.</td></tr>
+
+  <tr><td>Shared montage links (image + record)</td><td>90 days after sharing, then deleted.</td></tr>
+
+  <tr><td>Anonymous usage statistics</td><td>Until you use <strong>Settings → Delete account &amp; all data</strong> (or request deletion by email).</td></tr>
+
+  <tr><td>Crash reports (if you opt in)</td><td>90 days at Sentry, then deleted.</td></tr>
+
+  <tr><td>Bot-protection signals (section 1.8)</td><td>Not stored by us. Cloudflare handles them under its Turnstile Privacy Addendum.</td></tr>
+
 </table>
 
 <h2>3. Who can see your data</h2>
 
 <ul>
+
   <li><strong>Local data</strong> — only you.</li>
+
   <li><strong>Group-room photos and votes</strong> — only the participants of the room you're in. Anyone with the 6-character room code can join the room and see its contents, so treat the code like a password — only share it with people you want in the montage.</li>
+
+  <li><strong>Cloudflare</strong> — receives only the technical signals needed for the bot-protection check in section 1.8, never your photos, names or montages.</li>
+
   <li><strong>We (the operators)</strong> — Supabase support staff can technically access the database in the course of providing the hosted service. We do not routinely access user data and do not share it with anyone else.</li>
+
 </ul>
 
 <h2>4. International transfers</h2>
 
-<p>Our backend is hosted on Supabase in the <strong>EU (Frankfurt)</strong>. If you're outside the EU, your data is transferred to and stored in the EU.</p>
+<p>Our backend is hosted on Supabase in the <strong>EU (Frankfurt)</strong>. If you're outside the EU, your data is transferred to and stored in the EU. The bot-protection check (section 1.8) is processed by Cloudflare, Inc. on its global network, so those technical signals may be processed outside the EU, including in the United States, under Cloudflare's own data-transfer safeguards.</p>
 
 <h2>5. Your rights</h2>
 
 <p>You can:</p>
 
 <ul>
-  <li><strong>Delete everything in one tap</strong> — <strong>Settings → Delete account &amp; all data</strong>. This wipes every montage, photo, room, setting, and the anonymous account id on this device, and asks our backend to delete every server-side row tied to your anonymous account (participations, photo uploads, votes, abuse-prevention counters, and the auth record itself). This action cannot be undone.</li>
+
+  <li><strong>Delete everything in one tap</strong> — <strong>Settings → Delete account &amp; all data</strong>. This wipes every montage, photo, room, setting, and the anonymous account id on this device, and asks our backend to delete every server-side row tied to your anonymous account (participations, photo uploads, votes, abuse-prevention counters, shared montage links, usage statistics, and the auth record itself). This action cannot be undone.</li>
+
   <li><strong>Delete only local data</strong> — uninstall the app, or use the in-app delete buttons next to individual montages.</li>
+
   <li><strong>Request server-side deletion by email</strong> — if the in-app deletion fails (e.g. you have no internet at the time), email <strong><a href="mailto:lancimator@gmail.com">lancimator@gmail.com</a></strong> with the anonymous account id from Settings and we will purge the server-side data manually within 30 days.</li>
+
   <li><strong>Export your data</strong> — montages live on your device and can be saved to your gallery via the share sheet. To request a copy of server-side data, email the support address above.</li>
+
 </ul>
 
 <h2>6. Cookies &amp; trackers</h2>
 
-<p>The app does not use cookies, advertising identifiers, or third-party trackers. We do not integrate Facebook SDK, Google Ads, or similar.</p>
+<p>The app does not use advertising identifiers or third-party trackers. The only third-party code that runs is the invisible Cloudflare Turnstile bot check described in section 1.8, which Cloudflare may support with its own strictly necessary cookies inside that hidden web view; it is used only to tell people apart from bots, never for advertising or tracking. We do not integrate Facebook SDK, Google Ads, or similar.</p>
 
 <h2>7. In-app purchases</h2>
 
@@ -148,7 +208,7 @@
 
 <p>All in-app purchases are processed entirely by the platform's own payment system — <strong>Google Play Billing</strong> on Android and the <strong>App Store</strong> on iOS. We never receive, see, or store your payment card or billing details; the store handles the transaction and only tells the app whether a purchase succeeded.</p>
 
-<p>When you buy the premium unlock, the app records that purchase in a flag stored <strong>locally on your device</strong> so it can remember your entitlement; this flag is not sent to our backend. Donations are consumable and unlock nothing — they are simply a way to support development.</p>
+<p>When you buy the premium unlock, the app records that purchase in a flag stored <strong>locally on your device</strong> so it can remember your entitlement; this flag is not sent to our backend. Separately, the outcome of each purchase attempt (product and result, no payment details) is recorded in the anonymous usage statistics described in section 1.7. Donations are consumable and unlock nothing — they are simply a way to support development.</p>
 
 <p>For your purchase history, refunds, and the data the store itself collects to process payments, see Apple's and Google's respective privacy policies.</p>
 
