@@ -34,7 +34,7 @@
 
 <h1>ColorCollect Privacy Policy</h1>
 
-<p class="updated">Last updated: 2026-10-13</p>
+<p class="updated">Last updated: 2026-10-14</p>
 
 <p>This document explains what data the ColorCollect app ("the app", "we") collects, why, and how long it stays around. <strong>This is not legal advice</strong> — if you publish ColorCollect on the App Store or Play Store, have a lawyer review this text and adapt it to the laws of the regions you operate in (GDPR for the EU, CCPA for California, PIPEDA for Canada, etc.).</p>
 
@@ -52,7 +52,7 @@
 
   <li><strong>Optional geotagging</strong> — if you opt in, GPS coordinates are saved locally with each photo. They are not sent to our servers unless you also opt in to sharing a photo's location with your group room.</li>
 
-  <li><strong>Optional crash reports</strong> — off by default. You can opt in from Settings → Privacy.</li>
+  <li><strong>Optional crash reports</strong> — off unless you say yes. After your first finished montage the app asks once whether to send anonymous crash reports; you can change your answer anytime in Settings → Privacy (section 1.4).</li>
 
   <li><strong>Bot protection</strong> — when the app first connects to our backend, an invisible Cloudflare Turnstile check may run to keep automated fake accounts out. Cloudflare sees technical device signals (such as your IP address) for that check only (section 1.8).</li>
 
@@ -116,7 +116,7 @@
 
 <h3>1.4 Crash reports (opt-in)</h3>
 
-<p>Crash reporting is <strong>off by default</strong>. If you turn it on under <strong>Settings → Privacy → Send crash reports</strong>, the app sends anonymous crash diagnostics to Sentry (sentry.io) on the next launch. These reports include the stack trace, the OS version, the app version, and the anonymous account id — but <strong>not</strong> photos, room codes, display names, or device identifiers like IMEI / advertising id. You can turn the setting off again at any time; once off, no further reports are sent.</p>
+<p>Crash reporting is <strong>off unless you agree to it</strong>. After you finish your first montage the app asks you once ("Help fix crashes?"), and you can turn it on or off at any time under <strong>Settings → Privacy → Send crash reports</strong>. If you agree, the app sends anonymous error reports to Sentry (sentry.io) when it crashes or freezes, and when an important action fails — sharing a montage, uploading a group photo, creating a montage, a purchase, or taking a photo. A report contains the error and its stack trace, the OS version, the device model, the app version, and the random anonymous account id. Before a report leaves your device the app strips file paths, internal ids, links and tokens, e-mail addresses and the device name; reports <strong>never</strong> contain your photos, montages, room codes, display names, location, or device identifiers like IMEI / advertising id. No performance traces, screenshots or tap logs are collected. Turning the setting off stops reporting immediately.</p>
 
 <h3>1.5 Notifications</h3>
 
