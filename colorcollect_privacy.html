@@ -78,7 +78,7 @@
 
   <li><strong>Upload queue</strong> — pending photo uploads in Group mode, until they succeed or you discard them.</li>
 
-  <li><strong>Notification schedule</strong> — when you set a deadline on a group montage, a one-hour-before reminder is scheduled with the device's local notification system. The reminder text contains only the room code — no photos or display names.</li>
+  <li><strong>Notification schedule</strong> — when you set a deadline on a group montage, a one-hour-before reminder is scheduled with the device's local notification system. The reminder text contains only the room code — no photos or display names. If you turn on reminders (Settings → Reminders), the daily-color, streak and unfinished-hunt reminders, your chosen reminder time and when you last added a photo to an unfinished hunt are kept on the device too.</li>
 
 </ul>
 
@@ -118,9 +118,9 @@
 
 <p>Crash reporting is <strong>off by default</strong>. If you turn it on under <strong>Settings → Privacy → Send crash reports</strong>, the app sends anonymous crash diagnostics to Sentry (sentry.io) on the next launch. These reports include the stack trace, the OS version, the app version, and the anonymous account id — but <strong>not</strong> photos, room codes, display names, or device identifiers like IMEI / advertising id. You can turn the setting off again at any time; once off, no further reports are sent.</p>
 
-<h3>1.5 Notifications (Android 13+)</h3>
+<h3>1.5 Notifications</h3>
 
-<p>If you create a group montage with a deadline, the app schedules a one-hour-before local reminder using the system notification service. On Android 13+ the system will ask you for notification permission the first time. You can revoke it any time in system settings. Reminders are scheduled and fired entirely on your device — nothing is sent to a push server.</p>
+<p>If you create a group montage with a deadline, the app schedules a one-hour-before local reminder using the system notification service. Reminders are <strong>off until you turn them on</strong> (after your first finished montage, or under <strong>Settings → Reminders</strong>): a daily note naming the color of the day at the time you choose, an evening heads-up on days your streak would otherwise break, and a nudge a day after your last photo when a hunt is still unfinished. The color of the day is calculated on the device, so these need no server either. The system asks for notification permission the first time you turn any of them on; you can revoke it, or switch each reminder off, at any time. All reminders are scheduled and fired entirely on your device — nothing is sent to a push server.</p>
 
 <h3>1.6 Shared montage links (when you tap Share)</h3>
 
@@ -128,7 +128,7 @@
 
 <h3>1.7 Anonymous usage statistics</h3>
 
-<p>To understand how the app is used, it records a small number of events on our own backend (Supabase, EU), keyed only by your random anonymous account id: a montage was completed or shared, a group room was created or joined, the premium screen was opened (and from where), the outcome of an in-app purchase attempt (which product, and whether it succeeded or was cancelled — never payment details), the price the premium screen showed and the country of your store account as reported by Google Play or the App Store, that the promo-code screen was opened (never the code itself), plus similar steps such as first launch, finishing the intro, starting a hunt (e.g. from the color of the day), taking a photo, sharing an invite, opening a shared link, and the type of error when a photo, upload or montage fails. Each event also records the device platform (Android or iOS), the app version and the device language/region setting, and the time it happened. Events logged while offline are kept on the device (at most two weeks) and sent when the connection returns. Events carry no photos, display names, locations or free text. They are not shared with anyone, no third-party analytics SDK is used, and they are deleted when you use <strong>Settings → Delete account &amp; all data</strong>.</p>
+<p>To understand how the app is used, it records a small number of events on our own backend (Supabase, EU), keyed only by your random anonymous account id: a montage was completed or shared, a group room was created or joined, the premium screen was opened (and from where), the outcome of an in-app purchase attempt (which product, and whether it succeeded or was cancelled — never payment details), the price the premium screen showed and the country of your store account as reported by Google Play or the App Store, that the promo-code screen was opened (never the code itself), plus similar steps such as first launch, finishing the intro, starting a hunt (e.g. from the color of the day), taking a photo, opening the app from a reminder and changing the reminder settings (which reminders are on and at what time), sharing an invite, opening a shared link, and the type of error when a photo, upload or montage fails. Each event also records the device platform (Android or iOS), the app version and the device language/region setting, and the time it happened. Events logged while offline are kept on the device (at most two weeks) and sent when the connection returns. Events carry no photos, display names, locations or free text. They are not shared with anyone, no third-party analytics SDK is used, and they are deleted when you use <strong>Settings → Delete account &amp; all data</strong>.</p>
 
 <h3>1.8 Bot protection (Cloudflare Turnstile)</h3>
 
