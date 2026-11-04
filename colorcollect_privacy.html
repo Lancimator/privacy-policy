@@ -34,7 +34,7 @@
 
 <h1>ColorCollect Privacy Policy</h1>
 
-<p class="updated">Last updated: 2026-11-03</p>
+<p class="updated">Last updated: 2026-11-04</p>
 
 <p>This document explains what data the ColorCollect app ("the app", "we") collects, why, and how long it stays around. <strong>This is not legal advice</strong> — if you publish ColorCollect on the App Store or Play Store, have a lawyer review this text and adapt it to the laws of the regions you operate in (GDPR for the EU, CCPA for California, PIPEDA for Canada, etc.).</p>
 
@@ -46,7 +46,7 @@
 
   <li><strong>Solo mode</strong> — your photos and montages stay on your device. The one exception is when you tap <strong>Share</strong> on a finished montage: that single montage image is uploaded so the link in your message can open it, and it is deleted after 90 days (section 1.6).</li>
 
-  <li><strong>Anonymous usage statistics</strong> — the app records a few events (e.g. "montage completed", "paywall opened") against your random anonymous id, on our own server, to understand how the app is used (section 1.7).</li>
+  <li><strong>Usage statistics</strong> — the app records a few events (e.g. "montage completed", "paywall opened") against your random account id (pseudonymous: it names no person, but it does link your events together), on our own server, to understand how the app is used (section 1.7).</li>
 
   <li><strong>Group mode</strong> — photos and a chosen display name are sent to our backend (Supabase) so the people in your room can see them. Photos are auto-deleted from the server shortly after the room is finalized (typically within an hour), and at most 24 hours after a room goes inactive.</li>
 
@@ -83,11 +83,12 @@
 </ul>
 
 <p><strong>Color assist camera</strong> — when you take a photo with Color assist (on by default; Settings → Capture), the app analyses the live camera view on your device to measure how close the color in the middle of the view is to your target color. The camera view is never stored or sent anywhere; only the photo you take is kept, like any other photo.</p>
+
 <p>You can clear all of this with <strong>Settings → Delete account &amp; all data</strong>, or by uninstalling the app.</p>
 
 <h3>1.2 Backend storage (only in Group mode)</h3>
 
-<p>When you create or join a Group montage, the following is sent to our backend (Supabase, hosted in the EU):</p>
+<p>When you create or join a Group montage, the following is sent to our backend (Supabase, hosted in the EU — Ireland):</p>
 
 <ul>
 
@@ -101,9 +102,11 @@
 
   <li><strong>Votes</strong> — in Vote-mode rooms, which candidate you voted for per cell.</li>
 
+  <li><strong>Photo notes and comments</strong> — if you add a note to a group photo, or comment on someone's photo in a room with photo sharing on, the text is stored with that room and shown to its participants. Notes are removed with the photo; comments are removed with the room, or earlier when you delete them or your account.</li>
+
   <li><strong>Per-day counters</strong> — number of rooms you created and photos you uploaded each day, for abuse prevention. Retained 30 days.</li>
 
-  <li><strong>IP address (implicit)</strong> — like every internet service, our backend sees the IP address you connect from. Supabase logs it for security purposes (rate limiting, abuse detection) according to their own retention policy. We do not separately store or analyse IPs.</li>
+  <li><strong>IP address</strong> — like every internet service, our backend sees the IP address you connect from, and Supabase logs it for security purposes according to their own retention policy. We additionally keep a <strong>one-way hash</strong> of it (not the address itself) in two places, only to stop abuse of room codes: when someone enters a room code that doesn't exist (kept at most 2 days, to limit code guessing), and when a host removes someone from a room (kept with that room, so the removed person can't simply rejoin under a new account).</li>
 
 </ul>
 
@@ -125,11 +128,11 @@
 
 <h3>1.6 Shared montage links (when you tap Share)</h3>
 
-<p>When you share a finished montage, the app uploads <strong>that one composed montage image</strong> (a JPEG reduced to at most 1080 pixels, typically under 150 KB) to our backend together with its target color and color name, and puts a link to it in your message (for example <code>https://colorcollectapp.com/m/?id=…</code>). Anyone you send the link to can open the montage in the app or see it on that web page. The upload starts as soon as you tap Share (so the link is ready when the share sheet opens) and the link is kept for re-sharing the same montage. The individual cell photos, their locations, and your display name are <strong>not</strong> uploaded. The link id is random and unguessable; links are not listed or searchable. The image and its record are deleted automatically <strong>90 days</strong> after sharing, or immediately when you use <strong>Settings → Delete account &amp; all data</strong>. If you are offline, the montage is shared as an image without a link and nothing is uploaded.</p>
+<p>When you share a finished montage, the app uploads <strong>that one composed montage image</strong> (a JPEG reduced to at most 1080 pixels, typically under 150 KB) to our backend together with its target color and color name, and puts a link to it in your message (for example <code>https://colorcollectapp.com/m/?id=…</code>). Anyone you send the link to can open the montage in the app or see it on that web page. The upload starts as soon as you tap Share (so the link is ready when the share sheet opens) and the link is kept for re-sharing the same montage. The individual cell photos, their locations, and your display name are <strong>not</strong> uploaded. The link id is random and unguessable; links are not listed or searchable. The image and its record are deleted automatically <strong>90 days</strong> after sharing. You can take one link down earlier with <strong>Stop sharing link</strong> on that montage (the link stops working at once and the image is deleted from our server, typically within an hour; a copy someone's browser or a web cache already holds may stay visible for up to an hour), or all of them with <strong>Settings → Delete account &amp; all data</strong>. If you are offline, the montage is shared as an image without a link and nothing is uploaded.</p>
 
-<h3>1.7 Anonymous usage statistics</h3>
+<h3>1.7 Usage statistics (pseudonymous)</h3>
 
-<p>To understand how the app is used, it records a small number of events on our own backend (Supabase, EU), keyed only by your random anonymous account id: a montage was completed or shared, a group room was created or joined, the premium screen was opened (and from where), the outcome of an in-app purchase attempt (which product, and whether it succeeded or was cancelled — never payment details), the price the premium screen showed and the country of your store account as reported by Google Play or the App Store, that the store could not load a price, that the promo-code screen was opened (never the code itself), whether a premium purchase could be confirmed with the store, plus similar steps such as first launch, finishing the intro, starting a hunt (e.g. from the color of the day), taking a photo (for a Color assist photo, also how close its color was: great, close or far), picking a target color from a photo or the camera, opening the app from a reminder and changing the reminder settings (which reminders are on and at what time), sharing an invite, opening a shared link, and the type of error when a photo, upload or montage fails. Each event also records the device platform (Android or iOS), the app version and the device language/region setting, and the time it happened. On a store test device (Google Play's automated pre-launch testing, or a TestFlight / App Review build) events are additionally marked as such, so they can be left out of the statistics. Events logged while offline are kept on the device (at most two weeks) and sent when the connection returns. Events carry no photos, display names, locations or free text. They are not shared with anyone and no third-party analytics SDK is used. Individual events are deleted after <strong>180 days</strong>, or earlier when you use <strong>Settings → Delete account &amp; all data</strong>. Before an old month's events are deleted, they are added up into monthly totals per event and platform (for example "montages shared on Android in August: 120, by 80 people") that contain no account id, so they cannot be traced back to you and are kept for long-term trends.</p>
+<p>To understand how the app is used, it records a small number of events on our own backend (Supabase, EU), keyed only by your random anonymous account id. That id names no person, but it links your events to each other, so these statistics are <strong>pseudonymous</strong> rather than anonymous: a montage was completed or shared, a group room was created or joined, the premium screen was opened (and from where), the outcome of an in-app purchase attempt (which product, and whether it succeeded or was cancelled — never payment details), the price the premium screen showed and the country of your store account as reported by Google Play or the App Store, that the store could not load a price, that the promo-code screen was opened (never the code itself), whether a premium purchase could be confirmed with the store, plus similar steps such as first launch, finishing the intro, starting a hunt (e.g. from the color of the day), taking a photo (for a Color assist photo, also how close its color was: great, close or far), picking a target color from a photo or the camera, opening the app from a reminder and changing the reminder settings (which reminders are on and at what time), sharing an invite, opening a shared link, and the type of error when a photo, upload or montage fails. Each event also records the device platform (Android or iOS), the app version and the device language/region setting, and the time it happened. On a store test device (Google Play's automated pre-launch testing, or a TestFlight / App Review build) events are additionally marked as such, so they can be left out of the statistics. Events logged while offline are kept on the device (at most two weeks) and sent when the connection returns. Events carry no photos, display names, locations or free text. They are not shared with anyone and no third-party analytics SDK is used. Individual events are deleted after <strong>180 days</strong>, or earlier when you use <strong>Settings → Delete account &amp; all data</strong>. Before an old month's events are deleted, they are added up into monthly totals per event and platform (for example "montages shared on Android in August: 120, by 80 people") that contain no account id, so they cannot be traced back to you and are kept for long-term trends.</p>
 
 <h3>1.8 Bot protection (Cloudflare Turnstile)</h3>
 
@@ -141,7 +144,7 @@
 
 <h3>1.9 Invite links opened before the app is installed</h3>
 
-<p>If you follow a group invite or a shared-montage link before you have the app, the web page passes that link on so the app can open it once installed. On Android it is attached to the Google Play download as the <strong>install referrer</strong>, which the app reads once, on its first launch. On iPhone, tapping the download button copies the link to your clipboard; the app reads the clipboard <strong>only when you tap</strong> "Got an invite or link? Paste it" (or the paste button on the Join screen). The link is used only on your device to open that room or montage — joining then works exactly as in section 1.2, and if the invite carries the inviter's anonymous account id, the room records that you joined through their invite. Apart from that, the clipboard contents are not stored or sent anywhere. From the install referrer the app additionally keeps only its campaign tags — the <code>utm_source</code>, <code>utm_medium</code> and <code>utm_campaign</code> values Google Play attaches (for example <code>google-play</code> / <code>organic</code>, or the name of an ad campaign) — and logs them once as an anonymous usage statistic (section 1.7) so we can see which channels bring people to the app; nothing else from the referrer is stored or sent.</p>
+<p>If you follow a group invite or a shared-montage link before you have the app, the web page passes that link on so the app can open it once installed. On Android it is attached to the Google Play download as the <strong>install referrer</strong>, which the app reads once, on its first launch. On iPhone, tapping the download button copies the link to your clipboard; the app reads the clipboard <strong>only when you tap</strong> "Got an invite or link? Paste it" (or the paste button on the Join screen). The link is used only on your device to open that room or montage — joining then works exactly as in section 1.2, and if the invite carries the inviter's anonymous account id, the room records that you joined through their invite. Apart from that, the clipboard contents are not stored or sent anywhere. From the install referrer the app additionally keeps only its campaign tags — the <code>utm_source</code>, <code>utm_medium</code> and <code>utm_campaign</code> values Google Play attaches (for example <code>google-play</code> / <code>organic</code>, or the name of an ad campaign) — and logs them once as a usage statistic (section 1.7) so we can see which channels bring people to the app; nothing else from the referrer is stored or sent.</p>
 
 <h3>1.10 Invite rewards</h3>
 
@@ -163,15 +166,19 @@
 
   <tr><td>Group-room photos</td><td>Auto-deleted from our servers <strong>shortly after the room is finalized</strong> (typically within an hour), and at most <strong>24 hours</strong> after a room goes inactive.</td></tr>
 
-  <tr><td>Unfinalized rooms older than 30 days</td><td>Auto-deleted.</td></tr>
+  <tr><td>Unfinished group rooms</td><td>Deleted, with their photos, after <strong>24 hours</strong> with no activity (no photo, vote, comment or member change), but never before a deadline the host set.</td></tr>
+
+  <tr><td>Finished group rooms</td><td>Photos and their locations and notes are deleted shortly after the room ends (typically within an hour); the room itself (names, votes, comments, no photos) is kept <strong>7 days</strong> so members can see the result and start a rematch, then deleted.</td></tr>
+
+  <tr><td>Hashed IP addresses (section 1.2)</td><td>Unknown-code attempts: at most 2 days. Room removals: until that room is deleted.</td></tr>
 
   <tr><td>Per-day abuse-prevention counters</td><td>30 days, then deleted.</td></tr>
 
-  <tr><td>Shared montage links (image + record)</td><td>90 days after sharing, then deleted.</td></tr>
+  <tr><td>Shared montage links (image + record)</td><td>90 days after sharing, or when you tap <strong>Stop sharing link</strong>, then deleted.</td></tr>
 
   <tr><td>Invite credits (section 1.10)</td><td>Until <strong>Delete account &amp; all data</strong> (yours are deleted; your id is removed from credits you gave).</td></tr>
 
-  <tr><td>Anonymous usage statistics</td><td><strong>180 days</strong>, or until you use <strong>Settings → Delete account &amp; all data</strong> (or request deletion by email) if that comes first. Afterwards only monthly totals without any account id remain (section 1.7).</td></tr>
+  <tr><td>Usage statistics</td><td><strong>180 days</strong>, or until you use <strong>Settings → Delete account &amp; all data</strong> (or request deletion by email) if that comes first. Afterwards only monthly totals without any account id remain (section 1.7).</td></tr>
 
   <tr><td>Crash reports (if you opt in)</td><td>90 days at Sentry, then deleted.</td></tr>
 
@@ -195,7 +202,7 @@
 
 <h2>4. International transfers</h2>
 
-<p>Our backend is hosted on Supabase in the <strong>EU (Frankfurt)</strong>. If you're outside the EU, your data is transferred to and stored in the EU. The bot-protection check (section 1.8) is processed by Cloudflare, Inc. on its global network, so those technical signals may be processed outside the EU, including in the United States, under Cloudflare's own data-transfer safeguards.</p>
+<p>Our backend is hosted on Supabase in the <strong>EU (Ireland)</strong>. If you're outside the EU, your data is transferred to and stored in the EU. The bot-protection check (section 1.8) is processed by Cloudflare, Inc. on its global network, so those technical signals may be processed outside the EU, including in the United States, under Cloudflare's own data-transfer safeguards.</p>
 
 <h2>5. Your rights</h2>
 
@@ -223,7 +230,7 @@
 
 <p>All in-app purchases are processed entirely by the platform's own payment system — <strong>Google Play Billing</strong> on Android and the <strong>App Store</strong> on iOS. We never receive, see, or store your payment card or billing details; the store handles the transaction and only tells the app whether a purchase succeeded.</p>
 
-<p>When you buy the premium unlock, the app records that purchase in a flag stored <strong>locally on your device</strong> so it can remember your entitlement. Because Premium also lets you make a group room Premium for everyone in it (the "Host Pass"), the app sends the store's <strong>purchase reference</strong> for the premium unlock — the Google Play purchase token or the App Store transaction id, never payment details — to our backend (Supabase, EU). The backend asks Google Play or the App Store to confirm the purchase and then stores the product, the purchase reference, the store environment (e.g. test or production) and the time of the check, keyed by your random anonymous account id. It is re-checked periodically, so a refunded or revoked purchase stops unlocking Premium rooms. Whether a room is Premium is stored with the room and deleted with it. The purchase record is deleted when you use <strong>Settings → Delete account &amp; all data</strong> (restoring your purchases later checks it again). Separately, the outcome of each purchase attempt (product, price shown and result, no payment details) and whether a premium purchase could be confirmed are recorded in the anonymous usage statistics described in section 1.7. A seasonal frame pack is remembered the same way, <strong>only on your device</strong>: its purchase reference is not sent to our backend, and restoring your purchases from the store brings it back after a reinstall. Donations are consumable and unlock nothing — they are simply a way to support development.</p>
+<p>When you buy the premium unlock, the app records that purchase in a flag stored <strong>locally on your device</strong> so it can remember your entitlement. Because Premium also lets you make a group room Premium for everyone in it (the "Host Pass"), the app sends the store's <strong>purchase reference</strong> for the premium unlock — the Google Play purchase token or the App Store transaction id, never payment details — to our backend (Supabase, EU). The backend asks Google Play or the App Store to confirm the purchase and then stores the product, the purchase reference, the store environment (e.g. test or production) and the time of the check, keyed by your random anonymous account id. It is re-checked periodically, so a refunded or revoked purchase stops unlocking Premium rooms. Whether a room is Premium is stored with the room and deleted with it. The purchase record is deleted when you use <strong>Settings → Delete account &amp; all data</strong> (restoring your purchases later checks it again). Separately, the outcome of each purchase attempt (product, price shown and result, no payment details) and whether a premium purchase could be confirmed are recorded in the usage statistics described in section 1.7. A seasonal frame pack is remembered the same way, <strong>only on your device</strong>: its purchase reference is not sent to our backend, and restoring your purchases from the store brings it back after a reinstall. Donations are consumable and unlock nothing — they are simply a way to support development.</p>
 
 <p>For your purchase history, refunds, and the data the store itself collects to process payments, see Apple's and Google's respective privacy policies.</p>
 
