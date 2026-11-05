@@ -63,7 +63,7 @@
 <h3>1.2 Backend storage (only in Group mode)</h3>
 <p>When you create or join a Group montage, the following is sent to our backend (Supabase, hosted in the EU — Ireland):</p>
 <ul>
-<li><strong>Anonymous account id</strong> — a random UUID generated on first launch. We do <strong>not</strong> ask for your email, phone number, or any other identifying information.</li>
+<li><strong>Anonymous account id</strong> — a random UUID generated on first launch. We do <strong>not</strong> ask for your email, phone number, or any other identifying information. An account that has not been used for <strong>90 days</strong> and holds nothing on our server (no purchase record, no room membership, no live share link) is deleted automatically, together with everything stored under it, exactly as if you had used <strong>Delete account &amp; all data</strong>. Your montages on the device are not affected; the app simply creates a new anonymous account the next time it needs one.</li>
 <li><strong>Display name</strong> — the name you choose to be shown to other participants in your rooms.</li>
 <li><strong>Room metadata</strong> — grid size, target color, frame style, deadline (if you set one), participant list, who owns which cell.</li>
 <li><strong>Photo uploads</strong> — each photo you submit to a Group room is uploaded as a JPEG (max 350 KB). Photos are stored in encrypted-at-rest storage and served via short-lived signed URLs to other participants.</li>
@@ -134,6 +134,10 @@
 <tr>
 <td>Per-day abuse-prevention counters</td>
 <td>30 days, then deleted.</td>
+</tr>
+<tr>
+<td>Anonymous account on our server</td>
+<td>Deleted with all its server-side data after <strong>90 days</strong> without use, if it holds no purchase record, room membership or live share link (section 1.2). Otherwise until <strong>Delete account &amp; all data</strong>.</td>
 </tr>
 <tr>
 <td>Shared montage links (image + record)</td>
