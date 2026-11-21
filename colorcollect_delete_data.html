@@ -41,64 +41,65 @@
 
 <h1>Delete your ColorCollect data</h1>
 
-<p class="updated">Last updated: 2026-05-25</p>
+<p class="updated">Last updated: 2026-11-21</p>
 
-<p>This page explains how to request deletion of the data that the <strong>ColorCollect</strong> app (published by <strong>Lancimator</strong>) holds about you, what gets deleted, and what — if anything — is kept.</p>
+<p>This page explains how to delete the data that the <strong>ColorCollect</strong> app (published by <strong>Lancimator</strong>, see the <a href="https://colorcollectapp.com/impressum/">Impressum</a>) holds about you, what is deleted, and what is kept.</p>
 
-<p>For the full picture of what the app collects in the first place, see our <a href="https://colorcollectapp.com/privacy-policy/">Privacy Policy</a>.</p>
+<p>For what the app collects in the first place, see our <a href="https://colorcollectapp.com/privacy-policy/">Privacy Policy</a>.</p>
 
-<h2>Option 1 — Delete everything from inside the app (recommended)</h2>
+<p>ColorCollect has no sign-up. The app uses a random <strong>anonymous account id</strong>, created the first time it connects to our backend (when it first sends usage statistics you agreed to, or when you first use Group mode or share a link). We never ask for your name, email or phone number, so that id is the only way to find your data.</p>
 
-<p>The fastest way is to use the built-in self-service flow. It works even if you have never created an account in the traditional sense (ColorCollect uses an anonymous account id that is generated automatically the first time you open Group mode).</p>
+<h2>Option 1: Delete everything from inside the app (recommended)</h2>
 
 <ol>
-  <li>Open the <strong>ColorCollect</strong> app on your device.</li>
-  <li>Tap the <strong>Settings</strong> icon in the top-right of the home screen.</li>
-  <li>Scroll to the bottom and tap <strong>"Delete account &amp; all data"</strong>.</li>
-  <li>Confirm in the dialog that appears.</li>
+  <li>Open the <strong>ColorCollect</strong> app.</li>
+  <li>Tap the <strong>Settings</strong> (gear) icon in the top-right corner of the start screen.</li>
+  <li>In the <strong>Privacy</strong> section, tap <strong>Delete account &amp; all data</strong>.</li>
+  <li>Tap <strong>Delete everything</strong> to confirm.</li>
 </ol>
 
-<p>This wipes every montage, cell photo, room, setting, and the anonymous account id on your device, <strong>and</strong> asks our backend (Supabase) to delete every server-side row tied to your anonymous account — participations, photo uploads, votes, abuse-prevention counters, and the authentication record itself.</p>
+<p>The app first asks our backend (Supabase, EU) to delete your anonymous account and everything stored under it. Only when the server confirms does it wipe this device. If the server can't be reached (for example, you are offline), <strong>nothing is removed</strong>, so you can try again later or use Option 2.</p>
+
+<p>If this device used an earlier anonymous account it can no longer sign in to, the app shows that account id before deleting anything, so you can copy it and email it to us (Option 2).</p>
 
 <div class="callout">
-  <strong>Note:</strong> This action is permanent and cannot be undone. After it finishes, the app returns to its first-launch state and you will be issued a brand-new anonymous account id the next time you open Group mode.
+  <strong>Note:</strong> This is permanent and cannot be undone. Afterwards the app is back in its first-launch state: it asks again whether to send usage statistics, and creates a new anonymous account the next time it needs one.
 </div>
 
-<h2>Option 2 — Email us</h2>
+<h2>Option 2: Email us</h2>
 
-<p>If the in-app delete fails (e.g. you are offline, the app no longer launches, or you have already uninstalled it), send a deletion request by email:</p>
+<p>If the in-app deletion fails, the app no longer starts, or you have already uninstalled it, send a deletion request by email:</p>
 
 <ul>
   <li><strong>To:</strong> <a href="mailto:lancimator@gmail.com?subject=ColorCollect%20data%20deletion%20request">lancimator@gmail.com</a></li>
   <li><strong>Subject:</strong> <code>ColorCollect data deletion request</code></li>
-  <li><strong>Include:</strong> the <em>anonymous account id</em> shown in <strong>Settings → About</strong>, if you still have access to it. If you don't, list any room codes you participated in and a rough date range so we can locate the records.</li>
+  <li><strong>Include:</strong> your <em>account ID</em>, shown in the app under <strong>Settings → Privacy → Account ID</strong> (with a copy button). If you don't have it any more, tell us the room codes you used, roughly when, and any montage links you shared (<code>colorcollectapp.com/m/?id=…</code>), so we can find the records.</li>
 </ul>
 
-<p>We will confirm receipt within 7 days and complete the deletion within 30 days.</p>
+<p>We delete the server-side data within 30 days and reply to confirm.</p>
 
 <h2>What gets deleted</h2>
 
-<p>Both routes above remove the following:</p>
-
 <table>
   <thead>
-    <tr><th>Data</th><th>Where it lives</th><th>Deleted?</th></tr>
+    <tr><th>Data</th><th>Where it lives</th><th>Deleted</th></tr>
   </thead>
   <tbody>
-    <tr><td>All montages, cell photos, and target colors</td><td>Your device (Hive)</td><td>Yes, immediately</td></tr>
-    <tr><td>Display name and anonymous account id</td><td>Your device + Supabase</td><td>Yes, immediately</td></tr>
-    <tr><td>Group-room photo uploads (JPEGs)</td><td>Supabase Storage (EU)</td><td>Yes, immediately</td></tr>
-    <tr><td>Room participations and votes</td><td>Supabase database (EU)</td><td>Yes, immediately</td></tr>
-    <tr><td>Per-day abuse-prevention counters tied to your id</td><td>Supabase database (EU)</td><td>Yes, immediately</td></tr>
-    <tr><td>App settings, theme, geotag preference</td><td>Your device</td><td>Yes, immediately</td></tr>
-    <tr><td>Saved photo GPS coordinates (if you enabled geotagging)</td><td>Your device only — never sent to our backend</td><td>Yes, with the local wipe</td></tr>
-    <tr><td>Local notification schedule</td><td>Your device</td><td>Yes, immediately</td></tr>
+    <tr><td>Montages, cell photos, captions and your signature</td><td>Your device</td><td>Immediately</td></tr>
+    <tr><td>Saved photo locations (if you turned on <em>Save photo locations</em>) and cached map tiles</td><td>Your device</td><td>Immediately</td></tr>
+    <tr><td>Settings, display name, account ids, your crash-report and usage-statistics answers, and usage events not sent yet</td><td>Your device</td><td>Immediately</td></tr>
+    <tr><td>Your anonymous account</td><td>Our backend (Supabase, EU)</td><td>Immediately</td></tr>
+    <tr><td>Your group-room memberships, votes, comments and photo notes</td><td>Our backend</td><td>Immediately</td></tr>
+    <tr><td>Your photos and montage submissions in group rooms, with any locations you shared with your group</td><td>Our backend</td><td>Removed from rooms immediately; the image files are deleted from storage, typically within an hour</td></tr>
+    <tr><td>Rooms you host</td><td>Our backend</td><td>Handed over to another member; a room with nobody else in it is deleted with its photos</td></tr>
+    <tr><td>Montage links you shared (image and record)</td><td>Our backend</td><td>The links stop working immediately; the images are deleted, typically within an hour</td></tr>
+    <tr><td>Usage statistics (if you agreed)</td><td>Our backend</td><td>Immediately. Only monthly totals without any account id remain.</td></tr>
+    <tr><td>Your premium purchase record (the check behind the Host Pass)</td><td>Our backend</td><td>Immediately. <em>Restore purchases</em> checks it again with the store; Apple and Google keep their own purchase history.</td></tr>
+    <tr><td>Invite credits, rematch invites, blocks (yours, and others' blocks of you) and abuse-prevention counters</td><td>Our backend</td><td>Immediately</td></tr>
   </tbody>
 </table>
 
 <h2>What is kept, and for how long</h2>
-
-<p>A small amount of data is retained briefly for legal, security, and operational reasons:</p>
 
 <table>
   <thead>
@@ -106,35 +107,66 @@
   </thead>
   <tbody>
     <tr>
-      <td>Backend access logs (including the IP address your device connected from)</td>
-      <td>Security, abuse detection, and rate limiting. Logged by Supabase under their own policy; we do not separately store or analyse these.</td>
-      <td>Up to 30 days, then deleted by Supabase.</td>
+      <td>Reports you filed</td>
+      <td>So we can finish reviewing them. Your account id is removed from them.</td>
+      <td>Until resolved, then 180 days.</td>
     </tr>
     <tr>
-      <td>Crash diagnostics (only if you opted into crash reporting)</td>
-      <td>Stack traces uploaded to Sentry to help us fix bugs. These contain no photos, no display names, and no device identifiers — only an anonymous diagnostic id.</td>
-      <td>Up to 90 days at Sentry, then deleted.</td>
+      <td>Reports other players filed about your photos, comments, montages or account</td>
+      <td>Moderation: to act on them and handle repeat abuse.</td>
+      <td>Until resolved, then 180 days.</td>
     </tr>
     <tr>
-      <td>Email correspondence about your deletion request (Option 2 only)</td>
-      <td>So we can prove the request was honoured if you ask later.</td>
+      <td>A one-way hash of your IP address, if a host removed you from a room</td>
+      <td>So a removed player can't rejoin that room under a new account. It is no longer linked to your account.</td>
+      <td>Until that room is deleted.</td>
+    </tr>
+    <tr>
+      <td>Group montages that contain your photo, on other participants' devices or in links they shared</td>
+      <td>Room members may keep and share the finished montages their photos are in (<a href="https://colorcollectapp.com/terms-of-service/">Terms of Service § 4</a>). We can't reach their devices.</td>
+      <td>On their devices, until they delete them. Shared links expire after 90 days; report a link in the app, or email us, to have it taken down sooner.</td>
+    </tr>
+    <tr>
+      <td>Other participants' photos in rooms you joined</td>
+      <td>They belong to the other participants and stay visible to the rest of the room.</td>
+      <td>Deleted shortly after the room is finalized (typically within an hour), and at most 24 hours after a room goes inactive.</td>
+    </tr>
+    <tr>
+      <td>Backend access logs (including the IP address you connected from)</td>
+      <td>Security and abuse detection. Logged by Supabase; we don't store or analyse them separately.</td>
+      <td>A short time under Supabase's own retention policy, then deleted.</td>
+    </tr>
+    <tr>
+      <td>Crash reports (only if you agreed to send them)</td>
+      <td>Error reports at Sentry, to fix bugs. They carry an anonymous id, no photos and no names.</td>
+      <td>Up to 90 days, then deleted.</td>
+    </tr>
+    <tr>
+      <td>Email about your deletion request (Option 2 only)</td>
+      <td>So we can show the request was honoured if you ask later.</td>
       <td>Up to 12 months, then deleted.</td>
-    </tr>
-    <tr>
-      <td>Group-room photos that other participants shared <em>into</em> rooms you joined</td>
-      <td>Those photos belong to the other participants and remain visible to the rest of the room. We only delete photos <strong>you</strong> uploaded.</td>
-      <td>Auto-deleted from our servers shortly after the room is finalized (typically within an hour), and at most 24 hours after a room goes inactive, per our normal retention policy.</td>
     </tr>
   </tbody>
 </table>
 
+<h2>Deleting only some data</h2>
+
+<ul>
+  <li><strong>One shared link:</strong> open the montage and tap <strong>Stop sharing link</strong>. The link stops working at once and the image is deleted, typically within an hour.</li>
+  <li><strong>Usage statistics:</strong> turn off <strong>Settings → Privacy → Send usage statistics</strong>. Events not sent yet are dropped and no more are sent. Events already sent are deleted after 180 days, or now with Option 1 or 2.</li>
+  <li><strong>Photo locations:</strong> turn off <strong>Save photo locations</strong> and <strong>Share photo location with my group</strong>. Locations already saved stay on your device until you delete the photo or the montage.</li>
+  <li><strong>A montage:</strong> delete it from <em>My Montages</em>. This only affects your device.</li>
+</ul>
+
 <h2>Uninstalling the app</h2>
 
-<p>Uninstalling ColorCollect from your device removes all <em>local</em> data (montages, photos, settings, geotags). It does <strong>not</strong> by itself remove anything from our backend — for that you must use Option 1 <em>before</em> uninstalling, or Option 2 afterwards.</p>
+<p>Uninstalling ColorCollect removes everything stored on your device (montages, photos, settings, photo locations). It does <strong>not</strong> delete anything on our backend, and a reinstalled app can't sign back in to your old anonymous account. To delete the server copy, use Option 1 <em>before</em> uninstalling, or Option 2 afterwards.</p>
+
+<p>An anonymous account that hasn't been used for 90 days and holds nothing on our server (no purchase record, room membership or live share link) is deleted automatically, together with everything stored under it.</p>
 
 <h2>Contact</h2>
 
-<p>Questions about this page or about a deletion request you have already submitted: <strong><a href="mailto:lancimator@gmail.com">lancimator@gmail.com</a></strong>.</p>
+<p>Questions about this page or about a deletion request you have already sent: <strong><a href="mailto:lancimator@gmail.com">lancimator@gmail.com</a></strong>. Legal notice: <a href="https://colorcollectapp.com/impressum/">Impressum</a>.</p>
 
 </body>
 </html>
