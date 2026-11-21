@@ -33,7 +33,7 @@
 <body>
 
 <h1>ColorCollect Privacy Policy</h1>
-<p class="updated">Last updated: 2026-11-20</p>
+<p class="updated">Last updated: 2026-11-21</p>
 <p>This document explains what data the ColorCollect app ("the app", "we") collects, why, and how long it stays around. <strong>This is not legal advice</strong> — if you publish ColorCollect on the App Store or Play Store, have a lawyer review this text and adapt it to the laws of the regions you operate in (GDPR for the EU, CCPA for California, PIPEDA for Canada, etc.).</p>
 <p><strong>Who is responsible.</strong> The controller under the EU General Data Protection Regulation (GDPR) for the app is Liviusz Lovasz, Humperdinckstr. 7, 80807 München, Germany. Email: <strong>lancimator@gmail.com</strong>. We are not required to appoint a data protection officer.</p>
 <p>A copy of this policy is bundled with the app (Settings → Privacy → Privacy policy) and is also hosted publicly at <strong><a href="https://colorcollectapp.com/privacy-policy/">https://colorcollectapp.com/privacy-policy/</a></strong> so it can be linked from the app store listings.</p>
@@ -54,7 +54,7 @@
 <p>The app stores the following on your device only:</p>
 <ul>
 <li><strong>Montages</strong> — the grid, target color, frame style, the cell photos you've taken, and a caption if you've added one (Premium).</li>
-<li><strong>Settings</strong> — theme choice, display name, your signature (Premium), the random anonymous account id we generate the first time you use Group mode, and your crash-reporting / location preferences.</li>
+<li><strong>Settings</strong> — theme choice, display name, your signature (Premium), the random anonymous account id (and the ids of any earlier accounts this device used, so <strong>Delete account &amp; all data</strong> can tell you which ones it could not reach), and your crash-reporting / location preferences.</li>
 <li><strong>Upload queue</strong> — pending photo uploads in Group mode, until they succeed or you discard them.</li>
 <li><strong>Notification schedule</strong> — when you set a deadline on a group montage, a one-hour-before reminder is scheduled with the device's local notification system. The reminder text contains only the room code — no photos or display names. If you turn on reminders (Settings → Reminders), the daily-color, streak and unfinished-hunt reminders, your chosen reminder time and when you last added a photo to an unfinished hunt are kept on the device too.</li>
 </ul>
@@ -64,7 +64,7 @@
 <h3>1.2 Backend storage (only in Group mode)</h3>
 <p>When you create or join a Group montage, the following is sent to our backend (Supabase, hosted in the EU — Ireland):</p>
 <ul>
-<li><strong>Anonymous account id</strong> — a random UUID generated on first launch. We do <strong>not</strong> ask for your email, phone number, or any other identifying information. An account that has not been used for <strong>90 days</strong> and holds nothing on our server (no purchase record, no room membership, no live share link) is deleted automatically, together with everything stored under it, exactly as if you had used <strong>Delete account &amp; all data</strong> (reports other players filed about the account are kept as described in section 1.12). Your montages on the device are not affected; the app simply creates a new anonymous account the next time it needs one.</li>
+<li><strong>Anonymous account id</strong> — a random UUID created the first time the app connects to our backend: usually soon after you first open the app, when it sends its usage statistics (section 1.7), or else when you first use Group mode or share a link. We do <strong>not</strong> ask for your email, phone number, or any other identifying information. An account that has not been used for <strong>90 days</strong> and holds nothing on our server (no purchase record, no room membership, no live share link) is deleted automatically, together with everything stored under it, exactly as if you had used <strong>Delete account &amp; all data</strong> (reports other players filed about the account are kept as described in section 1.12). Your montages on the device are not affected; the app simply creates a new anonymous account the next time it needs one.</li>
 <li><strong>Display name</strong> — the name you choose to be shown to other participants in your rooms.</li>
 <li><strong>Room metadata</strong> — grid size, target color, frame style, deadline (if you set one), participant list, who owns which cell.</li>
 <li><strong>Photo uploads</strong> — each photo you submit to a Group room is uploaded as a JPEG (max 350 KB). Photos are stored in encrypted-at-rest storage and served via short-lived signed URLs to other participants.</li>
